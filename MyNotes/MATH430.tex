@@ -292,7 +292,7 @@ A - B  &= A + (-B) \\
 be the transpose of $A$ where
 
 \[
-\left[ A^T \right]_{ij} = \left[ A \right]_{ji} = a_{ij}.
+\left[ A^T \right]_{ij} = \left[ A \right]_{ji} = a_{ji}.
 \]
 
 Then $A^T$ is an $m \times n$ matrix, where the k\textsuperscript{th} row is the
@@ -314,7 +314,7 @@ The \textbf{conjugate} of $z$ is
 \overbar{z} = \overbar{a + bi} = a - bi.
 \]
 
-Particularly, if $z$ is a real number, i.e., $z = a$, then $\overbar{z} = z$.
+Particularly, if $z$ is a real number, i.e., $z = a$, then $\overbar{z} = a$.
 
 Suppose $A = [a_{ij}]$ is a complex matrix, i.e., $a_{ij}$ is a complex number. Therefore,
 
@@ -440,7 +440,7 @@ Recall that $A^* = (\bar{A})^T$. Now using the remark above we can write
 Thus, $\overline{c \cdot A} = \bar{c} \cdot \bar{A}$. Therefore
 
 \begin{align*}
-(c \cdot A)^* &= (\overline{c \dot A})^T \\
+(c \cdot A)^* &= (\overline{c \cdot A})^T \\
 &= (\overline{c} \cdot \overline{A})^T \\
 &= \overline{c} \cdot (\overline{A})^T \\
 &= \overline{c} \cdot A^*.
@@ -574,8 +574,9 @@ be an n-(column) vector. Then the \textbf{matrix-vector product} $Ab$ is defined
 A \cdot b = (b_1 \cdot A_{\bullet 1}) + (b_2 \cdot A_{\bullet 2}) + \cdots + (b_n \cdot A_{\bullet n}).
 \]
 
-Note that by the definition of scalar multiplication, $b_1 \cdot A_{\bullet k}$ for 
-$k = 1, 2, \ldots, n$ is an m-vector (with $m$ the number of rows in $A$). Then by the definition
+Note that by the definition of scalar multiplication, $b_i \cdot A_{\bullet k}$ and
+for $k = 1, 2, \ldots, n$ and $i = 1, 2, \ldots, m$ 
+is an m-vector (with $m$ the number of rows in $A$). Then by the definition
 of vector addition, $A \cdot b$ is also an m-vector or an $m \times 1$ matrix.
 \end{definition}
 
@@ -608,7 +609,7 @@ I =
 \end{bmatrix}_{n \times n}.
 \]
 
-We can also write $I$ as $I = [e_1 e_2 \cdots e_n]$ where $e_k$ is the k\textsuperscript{th}
+We can also write $I$ as $I = [e_1 \quad e_2 \quad \cdots \quad e_n]$ where $e_k$ is the k\textsuperscript{th}
 column of $I$.
 \end{remark}
 
@@ -620,7 +621,7 @@ A \cdot e_1 = A_{\bullet 1} \cdot 1 + A_{\bullet 2} \cdot 0 + \cdots + A_{\bulle
 \]
 
 where $e_1 = \begin{bmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{bmatrix}$. Likewise,
-$A \cdot e_2 = A_{\bullet 2} , \ldots A \cdot e_n = A_{\bullet n}$.
+$A \cdot e_2 = A_{\bullet 2}$ , $\ldots$ , $A \cdot e_n = A_{\bullet n}$.
 \end{example}
 
 \section{Matrix multiplication}
@@ -633,7 +634,7 @@ It can be shown that if $A$ and $B$ are two square matrices of the same size the
 
 \subsubsection{Matrix product}
 
-Given $A_{m \times n}$ and $B_{n \times p}$ where $B = [B_{\bullet 1} B_{\bullet 2} \cdots B_{\bullet p}]$ and
+Given $A_{m \times n}$ and $B_{n \times p}$ where $B = [B_{\bullet 1} \quad B_{\bullet 2} \quad \cdots \quad B_{\bullet p}]$ and
 each $B_{\bullet k}$ is an n-vector, then
 
 \[
@@ -744,7 +745,7 @@ By convention, $A^0 = I_n$.
 \begin{enumerate}
 \item $A \cdot (B + C) = A \cdot B + A \cdot C$
 \item $(D + E) \cdot F = D \cdot F + E \cdot F$
-\item $(A + B) \cdot C = A \cdot (B \cdot C)$
+\item $(A \cdot B) \cdot C = A \cdot (B \cdot C)$
 \item Let $\alpha$ be a scalar, then $A(\alpha \cdot B) = \alpha \cdot (A \cdot B) = (\alpha \cdot A) \cdot B$
 \item $(A \cdot B)^T = B^T \cdot A^T$, $(A \cdot B)^* = B^* \cdot A^*$
 \end{enumerate}
@@ -828,10 +829,10 @@ trace(A \cdot B) &= \sum_{i = 1}^{m} [A \cdot B]_{ii} \\
 &= \sum_{i = 1}^{m} ( A_{i \bullet} B_{\bullet i} ) \\
 &= \sum_{i = 1}^{m} \left( \sum_{k = 1}^{n} [A]_{ik} [B]_{ki} \right) \\
 &= \sum_{k = 1}^{n} \left( \sum_{i = 1}^{m} [A]_{ik} [B]_{ki} \right) \\
-&= \sum_{k = 1}^{n} \left( \sum_{i = 1}^{m} [B]_{ki} [A]_{ik} \right) \quad \quad (\text{in parathenases is } B_{k \bullet} A_{\bullet k}) \\
+&= \sum_{k = 1}^{n} \left( \sum_{i = 1}^{m} [B]_{ki} [A]_{ik} \right) \quad \quad (\text{in parentheses is } B_{k \bullet} A_{\bullet k}) \\
 &= \sum_{k = 1}^{n} \left( B_{k \bullet} A_{\bullet k} \right) \\
-&= \sum_{k = 1}^{n} [BA]_{kk} \\
-&= trace(BA).
+&= \sum_{k = 1}^{n} [B \cdot A]_{kk} \\
+&= trace(B \cdot A).
 \end{align*}
 \end{proof}
 
